@@ -1,30 +1,27 @@
+from player import Player
+
 class Board:
     ACTUAL_BOARD = 1
     DEMO_BOARD = 0
+    EMPTY_CELL = " "
 
     def __init__(self):
         self._b_dict = {1:" ", 2:" ", 3:" ",
                         4:" ", 5:" ", 6:" ",
                         7:" ", 8:" ", 9:" "}
 
-    def validate_poz(self, poz):
-        if poz not in self._b_dict:
-            return False
-        else:
-            if self._b_dict[poz] == " ":
-                return False
-            else:
-                return True
-
     def update_poz(self, poz:int, player_symbol:int):
         if poz in self._b_dict:
-            self._b_dict[poz] = player_symbol
+            if self._b_dict[poz] == Board.EMPTY_CELL:
+                self._b_dict[poz] = player_symbol
+            else:
+                print("Current player attempted to mark an already marked place. Player looses his turn")
 
     def display_aux(self, value):
         if value == Board.ACTUAL_BOARD:
-            ret_string = "Board:"
+            ret_string = "\nBoard:"
         else:
-            ret_string = "Demo Positions:"
+            ret_string = "\nDemo Positions:"
         for i in range(3):
             ret_string += "\n|"
             for poz in sorted(self._b_dict)[i*3:(i+1)*3]:
@@ -32,8 +29,21 @@ class Board:
                     ret_string += f"{self._b_dict[poz]}|"
                 else:
                     ret_string += f"{poz}|"
-        print(ret_string)
+        return ret_string
 
     def display(self):
-        self.display_aux(Board.DEMO_BOARD)
-        self.display_aux(Board.ACTUAL_BOARD)
+        final_string = ""
+        final_string += self.display_aux(Board.DEMO_BOARD)
+        final_string += self.display_aux(Board.ACTUAL_BOARD)
+        return final_string
+
+# print("bogus")
+# gb = Board()
+# player = Player(is_computer=False)
+# # before move
+# print(gb.display())
+# # after move
+# gb.update_poz(player.get_move().value, player.mark)
+# print(gb.display())
+
+
