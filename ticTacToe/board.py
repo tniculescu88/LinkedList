@@ -1,13 +1,22 @@
 class Board:
     ACTUAL_BOARD = 1
     DEMO_BOARD = 0
+
     def __init__(self):
         self._b_dict = {1:" ", 2:" ", 3:" ",
                         4:" ", 5:" ", 6:" ",
                         7:" ", 8:" ", 9:" "}
 
+    def validate_poz(self, poz):
+        if poz not in self._b_dict:
+            return False
+        else:
+            if self._b_dict[poz] == " ":
+                return False
+            else:
+                return True
 
-    def make_move(self, poz, player_symbol):
+    def update_poz(self, poz:int, player_symbol:int):
         if poz in self._b_dict:
             self._b_dict[poz] = player_symbol
 
@@ -25,8 +34,6 @@ class Board:
                     ret_string += f"{poz}|"
         print(ret_string)
 
-
     def display(self):
-
         self.display_aux(Board.DEMO_BOARD)
         self.display_aux(Board.ACTUAL_BOARD)
