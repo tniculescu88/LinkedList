@@ -24,7 +24,7 @@ class Player:
 
     def get_move(self, user_input):
         if self.is_computer:
-            return self.get_computer_move()
+            return self.get_computer_move(user_input)
         else:
             return self.get_human_move(user_input)
 
@@ -39,8 +39,9 @@ class Player:
                 raise Exception(f"user_input = {user_input} and it is reported as invalid move")
         return move
 
-    def get_computer_move(self):
-        random_choice = random.choice(list(range(1,10)))
+    def get_computer_move(self, computer_val):
+        # random_choice = random.choice(list(range(1,10)))
+        random_choice = computer_val
         move = Move(random_choice)
         print("Computer move (1-9): ", move.value)
         return move

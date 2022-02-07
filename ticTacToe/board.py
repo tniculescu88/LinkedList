@@ -33,17 +33,15 @@ class Board:
 
     def display(self):
         final_string = ""
-        final_string += self.display_aux(Board.DEMO_BOARD)
+        # final_string += self.display_aux(Board.DEMO_BOARD)
         final_string += self.display_aux(Board.ACTUAL_BOARD)
         return final_string
 
-# print("bogus")
-# gb = Board()
-# player = Player(is_computer=False)
-# # before move
-# print(gb.display())
-# # after move
-# gb.update_poz(player.get_move().value, player.mark)
-# print(gb.display())
+
+    def is_board_full(self):
+        for key in self._b_dict:
+            if self._b_dict[key] == Board.EMPTY_CELL:
+                return False
+        return True
 
 
