@@ -1,6 +1,0 @@
-- can initialize board
-- game welcome screen is displayed
-- human makes valid move
-- computer makes valid move
-- human makes invalid move > 9
-- human makes invalid move field is already used
